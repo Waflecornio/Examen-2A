@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlwnaqkanpy3q"]
+
+[ext_resource type="Texture2D" uid="uid://xo46nr0kicej" path="res://assets/timer.png" id="1_2i0au"]
+[ext_resource type="Script" path="res://sprite.gd" id="2_vhgu1"]
+[ext_resource type="FontFile" uid="uid://bttn4sbekg567" path="res://assets/alarm clock.ttf" id="3_3hmrn"]
+
+[node name="sprite" type="Sprite2D"]
+position = Vector2(633.875, 329)
+scale = Vector2(0.446324, 0.465836)
+texture = ExtResource("1_2i0au")
+script = ExtResource("2_vhgu1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -389.571
+offset_top = -257.602
+offset_right = 525.429
+offset_bottom = 108.398
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3hmrn")
+theme_override_font_sizes/font_size = 300
+text = "00:00"
+
+[node name="segundosb" type="Button" parent="."]
+offset_left = -412.0
+offset_top = 249.0
+offset_right = -250.0
+offset_bottom = 410.0
+
+[node name="botonmodo" type="Button" parent="."]
+offset_left = 564.892
+offset_top = 51.5203
+offset_right = 649.892
+offset_bottom = 120.52
+
+[node name="minutosb" type="Button" parent="."]
+offset_left = -134.151
+offset_top = 238.281
+offset_right = 38.8486
+offset_bottom = 420.281
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -405.0
+offset_top = -307.0
+offset_right = -208.0
+offset_bottom = -265.0
+theme_override_colors/font_shadow_color = Color(0.545693, 0.181294, 0.633731, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="start" type="Button" parent="."]
+offset_left = 186.0
+offset_top = 238.0
+offset_right = 399.0
+offset_bottom = 335.0
+
+[node name="stop" type="Button" parent="."]
+offset_left = 195.0
+offset_top = 339.0
+offset_right = 386.0
+offset_bottom = 423.0
+
+[connection signal="pressed" from="segundosb" to="." method="_on_botons_pressed"]
+[connection signal="ready" from="Timer" to="." method="_on_timer_ready"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
