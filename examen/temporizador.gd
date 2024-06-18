@@ -9,7 +9,7 @@ var paused = true
 var mode_label = 'TIMER'
 
 func update_label():
-	$mode_label.text = str(decimals)
+	$decimaleslab.text = str(decimals)
 	$time_label.text = '%02d:%02d'%[minutes, seconds]
 
 
