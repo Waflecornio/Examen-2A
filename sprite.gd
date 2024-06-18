@@ -1,13 +1,9 @@
-extends Sprite2D
-var minutos = 10
-var paused = true
+extends CanvasLayer
 
+var is_timer = true
+var minutes = 0
+var seconds = 0
+var decimals = 0
 
-func _on_ready():
-	$Timer.one_shot = true
+var mode_label = 'Timer'
 
-	
-
-
-
-func _on_start_pressed():
