@@ -7,76 +7,94 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_nw2xf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(575, 289)
-scale = Vector2(0.306182, 0.335642)
+[node name="reloj" type="Sprite2D" parent="."]
+position = Vector2(646, 325)
+scale = Vector2(0.458855, 0.481533)
 texture = ExtResource("1_2i0au")
 
-[node name="Timer" type="Timer" parent="."]
-
-[node name="time_label" type="Label" parent="."]
-offset_left = 412.0
-offset_top = 206.0
-offset_right = 648.0
-offset_bottom = 330.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3hmrn")
-theme_override_font_sizes/font_size = 90
-text = "10:00"
-
-[node name="botonmin" type="Button" parent="."]
-offset_left = 450.0
-offset_top = 377.0
-offset_right = 499.0
-offset_bottom = 420.0
-
-[node name="botonsec" type="Button" parent="."]
-offset_left = 542.0
-offset_top = 376.0
-offset_right = 585.0
-offset_bottom = 429.0
-
-[node name="botonstart" type="Button" parent="."]
-offset_left = 635.0
-offset_top = 367.0
-offset_right = 690.0
-offset_bottom = 401.0
-
-[node name="botonmodo" type="Button" parent="."]
-offset_left = 751.0
-offset_top = 306.0
-offset_right = 760.0
-offset_bottom = 319.0
-
-[node name="mode_label" type="Label" parent="."]
-offset_left = 442.0
-offset_top = 183.0
-offset_right = 482.0
-offset_bottom = 206.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3hmrn")
-text = "TIMER
-"
-
-[node name="pan" type="Label" parent="."]
+[node name="Tiempo" type="Label" parent="."]
 anchors_preset = -1
-anchor_right = 0.108
+anchor_right = 0.061
 anchor_bottom = 0.035
-offset_left = 637.0
-offset_top = 183.0
-offset_right = 552.584
-offset_bottom = 183.32
+offset_left = 475.0
+offset_top = 232.0
+offset_right = 726.728
+offset_bottom = 314.32
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3hmrn")
+theme_override_font_sizes/font_size = 100
+text = "00:00 "
 
-[node name="decimaleslab" type="Label" parent="."]
-offset_left = 655.0
-offset_top = 253.0
-offset_right = 695.0
-offset_bottom = 287.0
+[node name="decimales" type="Label" parent="."]
+offset_left = 761.0
+offset_top = 281.0
+offset_right = 801.0
+offset_bottom = 324.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3hmrn")
+theme_override_font_sizes/font_size = 40
 text = "0"
 
-[connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="pressed" from="botonsec" to="." method="_on_botonsec_pressed"]
-[connection signal="pressed" from="botonstart" to="." method="_on_botonstart_pressed"]
-[connection signal="pressed" from="botonmodo" to="." method="_on_botonmodo_pressed"]
+[node name="modo" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.131
+anchor_bottom = 0.018
+offset_left = 740.0
+offset_top = 182.0
+offset_right = 679.088
+offset_bottom = 203.336
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3hmrn")
+theme_override_font_sizes/font_size = 30
+text = "timer"
+
+[node name="estado" type="Label" parent="."]
+offset_left = 450.0
+offset_top = 178.0
+offset_right = 576.0
+offset_bottom = 211.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3hmrn")
+theme_override_font_sizes/font_size = 30
+text = "stopped"
+
+[node name="bot_modo" type="Button" parent="."]
+offset_left = 910.0
+offset_top = 347.0
+offset_right = 921.0
+offset_bottom = 370.0
+
+[node name="boton_inci" type="Button" parent="."]
+offset_left = 731.0
+offset_top = 438.0
+offset_right = 824.0
+offset_bottom = 531.0
+
+[node name="bot_min" type="Button" parent="."]
+offset_left = 578.0
+offset_top = 449.0
+offset_right = 667.0
+offset_bottom = 522.0
+
+[node name="bot_secs" type="Button" parent="."]
+offset_left = 454.0
+offset_top = 448.0
+offset_right = 535.0
+offset_bottom = 519.0
+
+[node name="clear_bot" type="Button" parent="."]
+offset_left = 773.0
+offset_top = 113.0
+offset_right = 823.0
+offset_bottom = 144.0
+text = "clean"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="pressed" from="bot_modo" to="." method="_on_bot_modo_pressed"]
+[connection signal="pressed" from="boton_inci" to="." method="_on_boton_inci_pressed"]
+[connection signal="pressed" from="bot_min" to="." method="_on_bot_min_pressed"]
+[connection signal="pressed" from="bot_secs" to="." method="_on_bot_secs_pressed"]
+[connection signal="pressed" from="clear_bot" to="." method="_on_clear_bot_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

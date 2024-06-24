@@ -1,85 +1,100 @@
 extends CanvasLayer
 
 var is_timer = true
-var minutes = 10
+
+var minutos = 0
 var seconds = 0
 var decimals = 0
-var paused = true
 
 var mode_label = 'TIMER'
 
 func update_label():
-	$decimaleslab.text = str(decimals)
-	$time_label.text = '%02d:%02d'%[minutes, seconds]
+	$decimales.text = str(decimals)
+	$Tiempo.text = '%02d:%02d'%[minutos,seconds]
+	
+func  update_stopwatch():
+	decimals += 1
+	if  decimals >= 10:
+		decimals = 0
+		seconds += 1
+	if  seconds >= 60:
+		seconds = 0
+		minutos += 1
+	if minutos >= 59:
+		seconds = 59
+		minutos = 59
+		decimals = 0
+		$estado.text = 'STOPPED'
+		$Timer.stop()
+	update_label()
 
-
-func _on_botonmodo_pressed():
+func _on_bot_modo_pressed():
 	if $Timer.is_stopped():
-		minutes = 0
+		minutos = 0
 		seconds = 0
 		decimals = 0
 		is_timer = !is_timer
-		if is_timer == true: 
+		if is_timer == true:
 			mode_label = 'TIMER'
-		else:
-			mode_label = 'STOP'
+		else: 
+			mode_label = 'STOPWATCH'
 	update_label()
-	$mode_label.text = mode_label
-		
+	$modo.text = mode_label
 
-func _on_botonstart_pressed():
+func _on_boton_inci_pressed():
 	if $Timer.is_stopped():
 		$Timer.start()
-		$pan.text = 'Run'
+		$estado.text = 'running'
 	else:
 		$Timer.stop()
-		$pan.text = 'stop'
-
-func update_stop_watch():
-	decimals += 1
-	if decimals >= 10:
-		decimals = 0
-		seconds += 1
-	if seconds >= 60:
-		seconds = 0
-		minutes += 1
-	if minutes >= 59:
-		seconds = 59
-		minutes += 59
-		decimals = 9
-		$pan.text = 'stopped'
-		$Timer.stop()
-	update_label()
+		$modo.text = 'STOPPED'
 		
 func update_timer():
 	decimals -= 1
-	if decimals < 0:
+	if  decimals < 0:
 		decimals = 9
 		seconds -= 1
 	if seconds < 0:
-		seconds = 59
-		minutes -= 1
-	if minutes < 0 :
-		minutes = 0
+		minutos = 0
 		seconds = 0
 		decimals = 0
-		$pan.text = 'Stopped'
+		$estado.text = 'STOPPED'
 		$Timer.stop()
 	update_label()
 	
-func on_main_timer_timeout():
-	if is_timer == false: 
-		update_stop_watch()
+
+func _on_timer_timeout():
+	if is_timer == false:
+		update_stopwatch()
 	else:
 		update_timer()
 		
-		
-	
-		
 
 
-func _on_botonsec_pressed():
+func _on_bot_secs_pressed():
 	if $Timer.is_stopped() and is_timer == true:
 		seconds += 1
-		if seconds > 59:
+		if  seconds > 59:
 			seconds = 0
+		decimals = 0
+		update_label()
+		
+		
+
+
+
+func _on_bot_min_pressed():
+	if $Timer.is_stopped() and is_timer == true:
+		minutos += 1
+		if minutos > 59:
+			minutos = 0
+		decimals = 0
+		update_label()
+
+
+func _on_clear_bot_pressed():
+	if  $Timer.is_stopped():
+		minutos = 0
+		seconds = 0
+		decimals = 0
+		update_label()
